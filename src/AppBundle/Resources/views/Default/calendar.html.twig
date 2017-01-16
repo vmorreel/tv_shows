@@ -1,0 +1,20 @@
+{% extends 'AppBundle::layout.html.twig' %}
+
+{% block menu_calendar %}active{% endblock %}
+
+	{% block contents %}
+		<section>
+			<div class="container">
+				<div class="row justify-content-center">
+					{% for episode in episodes %}
+						<a href="{{ path('show', {id: episode.season.show.id}) }}" class="tvshow col-sm-12">
+							<img class="pull-left" src="{{ web_image('uploads/'~episode.season.show.image).resize(100, 100).png }}" />
+							<h4>{{ episode.season.show.name }}</h4>
+							Episode : {{ episode.name }}<br>
+							Date de diffusion : {{ episode.date|date('d-m-Y') }}<br>
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endblock %}
